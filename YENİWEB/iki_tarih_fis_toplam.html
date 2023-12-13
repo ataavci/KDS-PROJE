@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Gunluk Fis Toplamı</title>
+  <style>
+    /* Basit bir CSS örneği */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+    input[type="text"] {
+      width: 200px;
+      margin-bottom: 10px;
+    }
+    button {
+      padding: 8px 12px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <h1>Günlük Fiş Toplamı</h1>
+  <form id="dateForm">
+    <label for="startDate">Başlangıç Tarihi:</label>
+    <input type="text" id="startDate" placeholder="YYYY-MM-DD">
+    <label for="endDate">Bitiş Tarihi:</label>
+    <input type="text" id="endDate" placeholder="YYYY-MM-DD">
+    <button type="submit">Toplamı Getir</button>
+  </form>
+
+  <div id="result"></div>
+
+  <script>
+    document.getElementById('dateForm').addEventListener('submit', function(event) {
+  event.preventDefault();
+
+  const startDate = document.getElementById('startDate').value;
+  const endDate = document.getElementById('endDate').value;
+
+  const xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === XMLHttpRequest.DONE) {
+      if (xhr.status === 200) {
+        const data = JSON.parse(xhr.responseText);
+        document.getElementById('result').innerHTML = `<p>Toplam: ${data.total}</p>`;
+      } else {
+        console.error('Hata:', xhr.status);
+        document.getElementById('result').innerHTML = '<p>Hata oluştu, lütfen tekrar deneyin.</p>';
+      }
+    }
+  };
+
+  xhr.open('GET', `/gunluk-fis?startDate=${startDate}&endDate=${endDate}`, true);
+  xhr.send();
+});
+  </script>
+</body>
+</html>

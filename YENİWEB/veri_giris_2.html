@@ -1,0 +1,92 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <style>
+                /* Bu kısımda var olan CSS stilleri bulunuyor */
+                body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        .form-container {
+            width: 300px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .form-group button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .form-group button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1 style="text-align: center;">Veri Ekleme</h1>
+        <form id="veriEkleForm">
+            <div class="form-group">
+                <label for="tarih">Tarih:</label>
+                <input type="date" id="tarih" name="tarih" required>
+            </div>
+            <div class="form-group">
+                <label for="ciro">Ciro:</label>
+                <input type="number" id="ciro" name="ciro" required>
+            </div>
+            <button type="button" id="veriEkle">Veriyi Ekle</button>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    // DOM hazır olduğunda buradaki kod çalışacak
+    document.getElementById('veriEkle').addEventListener('click', function() {
+
+        const tarih = document.getElementById('tarih').value;
+            const ciro = document.getElementById('ciro').value;
+
+            fetch('/veri-ekle', {
+                method: 'POST',
+                body: JSON.stringify({ tarih, ciro }),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);
+                document.getElementById('veriEkleForm').reset();
+            });
+        });
+        // Veri eklemeyi burada gerçekleştirin
+    });
+           
+    </script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Ciro Hesaplama</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f4f4f4;
+    }
+
+    .container {
+      text-align: center;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    label {
+      margin-bottom: 5px;
+    }
+
+    input[type="date"],
+    button {
+      margin-bottom: 10px;
+      padding: 8px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      cursor: pointer;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    #ciroResult {
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Toplam Ciro Hesaplama</h1>
+    <form id="ciroForm">
+      <label for="tarih1">Başlangıç Tarihi:</label>
+      <input type="date" id="tarih1" name="tarih1" required>
+      <label for="tarih2">Bitiş Tarihi:</label>
+      <input type="date" id="tarih2" name="tarih2" required>
+      <button type="submit">Ciro Hesapla</button>
+    </form>
+    <div id="ciroResult"></div>
+  </div>
+
+  <script>
+   const ciroForm = document.getElementById('ciroForm');
+const ciroResult = document.getElementById('ciroResult');
+
+ciroForm.addEventListener('submit', (event) => {
+  event.preventDefault();
+
+  const formData = new FormData(ciroForm);
+  const tarih1 = formData.get('tarih1');
+  const tarih2 = formData.get('tarih2');
+
+  const params = new URLSearchParams();
+  params.append('tarih1', tarih1);
+  params.append('tarih2', tarih2);
+
+  fetch(`/ciro?${params.toString()}`)
+    .then(response => response.json())
+    .then(data => {
+      ciroResult.innerHTML = `<p>Toplam Ciro: ${data.toplam_ciro}</p>`;
+    })
+    .catch(error => {
+      ciroResult.innerHTML = `<p>Hata: ${error.message}</p>`;
+    });
+});
+  </script>
+</body>
+</html>

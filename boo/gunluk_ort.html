@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Aylık Ortalama Ciro Sorgulama</title>
+</head>
+<body>
+  <h1>Aylık Ortalama Ciro Sorgulama</h1>
+  <form id="averageForm">
+    <label for="year">Yıl:</label>
+    <input type="number" id="year" name="year" min="2000" max="9999" required>
+    <button type="submit">Sorgula</button>
+  </form>
+
+  <div id="resultContainer">
+    <!-- Burada sonuçlar gösterilecek -->
+  </div>
+
+  <script>
+    document.getElementById('averageForm').addEventListener('submit', async (event) => {
+      event.preventDefault();
+      
+      const year = document.getElementById('year').value;
+      const formData = new FormData();
+      formData.append('year', year);
+
+      try {
+        const response = await fetch('/getYearlyAverage', {
+          method: 'POST',
+          body: formData
+        });
+
+        if (!response.ok) {
+          throw new Error('Sorgu başarısız.');
+        }
+
+        const data = await response.json();
+        displayResults(data);
+      } catch (error) {
+        console.error('Bir hata oluştu:', error);
+      }
+    });
+
+    function displayResults(results) {
+      const resultContainer = document.getElementById('resultContainer');
+      resultContainer.innerHTML = '';
+
+      if (results && results.length > 0) {
+        const table = document.createElement('table');
+        const headerRow = table.createTHead().insertRow();
+        const headers = ['Yıl', 'Ay', 'Ortalama Ciro'];
+
+        headers.forEach(headerText => {
+          const th = document.createElement('th');
+          th.textContent = headerText;
+          headerRow.appendChild(th);
+        });
+
+        const tbody = table.createTBody();
+        results.forEach(result => {
+          const row = tbody.insertRow();
+          Object.values(result).forEach(value => {
+            const cell = row.insertCell();
+            cell.textContent = value;
+          });
+        });
+
+        resultContainer.appendChild(table);
+      } else {
+        const noResults = document.createElement('p');
+        noResults.textContent = 'Sonuç bulunamadı.';
+        resultContainer.appendChild(noResults);
+      }
+    }
+  </script>
+</body>
+</html>

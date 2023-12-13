@@ -7,6 +7,7 @@ const app = express()
 app.get('/app',function(req, res) {
   res.send('Hello World')
 })
+
 //midddlewares
 app.use(express.json())
 app.use(express.json({limit:'50mb'}))

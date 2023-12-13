@@ -1,0 +1,147 @@
+<!DOCTYPE HTML>
+<html>
+<head>  
+<script>
+window.onload = function () {
+
+var chart = new CanvasJS.Chart("chartContainer", {
+	theme:"light2",
+	animationEnabled: true,
+	title:{
+		text: "2020-21-22-23 YILLARI AYLIK BAZDA CİRO KARŞILAŞTIRMALARI"
+	},
+	axisY :{
+		title: "CİRO",
+		suffix: "TL"
+	},
+	toolTip: {
+		shared: "true"
+	},
+	legend:{
+		cursor:"pointer",
+		itemclick : toggleDataSeries
+	},
+	data: [{
+		type: "spline",
+		
+		showInLegend: true,
+		yValueFormatString: "##.00TL",
+		name: "2020",
+		dataPoints: [
+			{ label: "Ocak", y: 381128 },
+			{ label: "Şubat", y: 365639 },
+			{ label: "Mart", y: 311791 },
+			{ label: "Nisan", y: 249012 },
+			{ label: "Mayıs", y: 302890 },
+			{ label: "Haziran", y: 458123 },
+			{ label: "Temmuz", y: 476296 },
+			{ label: "Ağustos", y: 492514 },
+			{ label: "Eylül", y: 470576 },
+			{ label: "Ekim", y: 497968 },
+            { label: "Kasım", y: 458079 },
+            { label: "Aralık", y: 445438 },
+		]
+	},
+	{
+		type: "spline", 
+		showInLegend: true,
+		
+		yValueFormatString: "##.00TL",
+		name: "2021",
+		dataPoints: [
+            { label: "Ocak", y: 512085 },
+			{ label: "Şubat", y: 485558 },
+			{ label: "Mart", y: 620160 },
+			{ label: "Nisan", y: 477531 },
+			{ label: "Mayıs", y: 605242 },
+			{ label: "Haziran", y: 287037 },
+			{ label: "Temmuz", y: 645846 },
+			{ label: "Ağustos", y: 654550},
+			{ label: "Eylül", y: 641503 },
+			{ label: "Ekim", y: 681445},
+            { label: "Kasım", y: 707460 },
+            { label: "Aralık", y: 820379 },
+		]
+	},
+	{
+		type: "spline",
+		
+		showInLegend: true,
+		yValueFormatString: "##.00TL",
+		name: "2022",
+		dataPoints: [
+            { label: "Ocak", y: 895364 },
+			{ label: "Şubat", y: 808320 },
+			{ label: "Mart", y: 944021 },
+			{ label: "Nisan", y: 904197 },
+			{ label: "Mayıs", y: 1062261 },
+			{ label: "Haziran", y: 1071664 },
+			{ label: "Temmuz", y: 1201034 },
+			{ label: "Ağustos", y: 1955815 },
+			{ label: "Eylül", y: 1165338 },
+			{ label: "Ekim", y: 1178828},
+            { label: "Kasım", y: 1200220},
+            { label: "Aralık", y: 1307968 },
+		]
+	},
+	{
+		type: "spline",
+      	
+		showInLegend: true,
+		yValueFormatString: "##.00TL",
+		name: "2023",
+		dataPoints: [
+            { label: "Ocak", y: 1444850 },
+			{ label: "Şubat", y: 1380111 },
+			{ label: "Mart", y: 1604921 },
+			{ label: "Nisan", y: 1943881 },
+			{ label: "Mayıs", y: 2031568 },
+			{ label: "Haziran", y: 2209235 },
+			{ label: "Temmuz", y: 2393747 },
+			{ label: "Ağustos", y: 2738785 },
+			{ label: "Eylül", y: 2563443 },
+			{ label: "Ekim", y: 1873668 },
+           
+		]
+	},
+    {
+		type: "spline",
+      	
+		showInLegend: true,
+		yValueFormatString: "##.00TL",
+		name: "REFERANS DEĞER",
+		dataPoints: [
+            { label: "Ocak", y: 25000},
+			{ label: "Şubat", y: 55000 },
+			{ label: "Mart", y: 700000 },
+			{ label: "Nisan", y: 850000 },
+			{ label: "Mayıs", y: 1000000 },
+			{ label: "Haziran", y: 1150000},
+			{ label: "Temmuz", y: 1300000 },
+			{ label: "Ağustos", y: 1450000 },
+			{ label: "Eylül", y: 1600000 },
+			{ label: "Ekim", y: 1750000 },
+           
+		]
+	},
+	]
+});
+chart.render();
+
+function toggleDataSeries(e) {
+	if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible ){
+		e.dataSeries.visible = false;
+	} else {
+		e.dataSeries.visible = true;
+	}
+	chart.render();
+}
+
+}
+</script>
+</head>
+<body>
+<div id="chartContainer" style="height: 370px; width: 100%;"></div>
+<script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
+</body>
+</html>

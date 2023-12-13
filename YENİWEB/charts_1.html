@@ -1,0 +1,170 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <script>
+    window.onload = function () {
+        var chart1 = new CanvasJS.Chart("chartContainer1", {
+            animationEnabled: true,
+            title: {
+                text: "2020 YILLIK BAZDA FİŞ SAYISI"
+            },
+            	axisX:{
+		interval: 1
+	},
+	axisY2:{
+		interlacedColor: "rgba(1,77,101,.2)",
+		gridColor: "rgba(1,77,101,.1)",
+		title: "FİŞ SAYISI"
+	},
+	data: [{
+		type: "bar",
+		name: "companies",
+		axisYType: "secondary",
+		color: "#014D65",
+		dataPoints: [
+			{ y: 13290, label: "Ocak" },
+			{ y: 12817, label: "Şubat" },
+			{ y: 10619, label: "Mart" },
+			{ y: 6300, label: "Nisan" },
+			{ y: 7284, label: "Mayıs" },
+			{ y: 12774, label: "Haziran" },
+			{ y: 13661, label: "Temmuz" },
+			{ y: 13983, label: "Ağustos" },
+			{ y: 13513, label: "Eylül" },
+			{ y: 14079, label: "Ekim" },
+			{ y: 11642, label: "Kasım" },
+			{ y: 9811, label: "Aralık" },
+            { y: 0, label: "REFERANS DEĞER" },
+			
+		]
+	}]
+
+            
+        });
+        chart1.render();
+
+        var chart2 = new CanvasJS.Chart("chartContainer2", {
+            animationEnabled: true,
+            title: {
+                text: "2021 YILLIK BAZDA FİŞ SAYISI"
+            },
+            axisX:{
+		interval: 1
+	},
+	axisY2:{
+		interlacedColor: "rgba(1,77,101,.2)",
+		gridColor: "rgba(1,77,101,.1)",
+		title: "FİŞ SAYISI"
+	},
+	data: [{
+		type: "bar",
+		name: "companies",
+		axisYType: "secondary",
+		color: "#014D65",
+		dataPoints: [
+			{ y: 10539, label: "Ocak" },
+			{ y: 10015, label: "Şubat" },
+			{ y: 13330, label: "Mart" },
+			{ y: 9882, label: "Nisan" },
+			{ y: 11490, label: "Mayıs" },
+			{ y: 5973, label: "Haziran" },
+			{ y: 13458, label: "Temmuz" },
+			{ y: 13817, label: "Ağustos" },
+			{ y: 13888, label: "Eylül" },
+			{ y: 14024, label: "Ekim" },
+			{ y: 13714, label: "Kasım" },
+			{ y: 14405, label: "Aralık" },
+            { y: 0, label: "REFERANS DEĞER" },
+			
+		]
+	}]
+        });
+        chart2.render();
+
+        var chart3 = new CanvasJS.Chart("chartContainer3", {
+            animationEnabled: true,
+            title: {
+                text: "2022 YILLIK FİŞ SAYISI"
+            },
+            axisX:{
+		interval: 1
+	},
+	axisY2:{
+		interlacedColor: "rgba(1,77,101,.2)",
+		gridColor: "rgba(1,77,101,.1)",
+		title: "FİŞ SAYISI"
+	},
+	data: [{
+		type: "bar",
+		name: "companies",
+		axisYType: "secondary",
+		color: "#014D65",
+		dataPoints: [
+			{ y: 13477, label: "Ocak" },
+			{ y: 11864, label: "Şubat" },
+			{ y: 13235, label: "Mart" },
+			{ y: 12593, label: "Nisan" },
+			{ y: 14378, label: "Mayıs" },
+			{ y: 13881, label: "Haziran" },
+			{ y: 13519, label: "Temmuz" },
+			{ y: 13045, label: "Ağustos" },
+			{ y: 12412, label: "Eylül" },
+			{ y: 11508, label: "Ekim" },
+			{ y: 11221, label: "Kasım" },
+			{ y: 11280, label: "Aralık" },
+            { y: 0, label: "REFERANS DEĞER" },
+			
+		]
+	}]
+        });
+        chart3.render();
+
+        var chart4 = new CanvasJS.Chart("chartContainer4", {
+            animationEnabled: true,
+            title: {
+                text: "2023 YILLIK FİŞ SAYISI"
+            },
+            axisX:{
+		interval: 1
+	},
+	axisY2:{
+		interlacedColor: "rgba(1,77,101,.2)",
+		gridColor: "rgba(1,77,101,.1)",
+		title: "FİŞ SAYISI"
+	},
+	data: [{
+		type: "bar",
+		name: "companies",
+		axisYType: "secondary",
+		color: "#014D65",
+		dataPoints: [
+			{ y: 11485, label: "Ocak" },
+			{ y: 10522, label: "Şubat" },
+			{ y: 12344, label: "Mart" },
+			{ y: 13573, label: "Nisan" },
+			{ y: 15013, label: "Mayıs" },
+			{ y: 15138, label: "Haziran" },
+			{ y: 15173, label: "Temmuz" },
+			{ y: 16249, label: "Ağustos" },
+			{ y: 15338, label: "Eylül" },
+			{ y: 10596, label: "Ekim" },
+			{ y: 0, label: "Kasım" },
+			{ y: 0, label: "Aralık" },
+            { y: 0, label: "REFERANS DEĞER" },
+			
+		]
+	}]
+        });
+        chart4.render();
+    }
+    </script>
+</head>
+<body>
+    <div id="chartContainer1" style="height: 370px; width: 100%;"></div>
+    <div id="chartContainer2" style="height: 370px; width: 100%;"></div>
+    <div id="chartContainer3" style="height: 370px; width: 100%;"></div>
+    <div id="chartContainer4" style="height: 370px; width: 100%;"></div>
+    <!-- İhtiyaç duyduğunuz kadar fazla grafik div'i ekleyebilirsiniz -->
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+</body>
+</html>

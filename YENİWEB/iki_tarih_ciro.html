@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Tarih Aralığına Göre Günlük Ciro</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    #dateRangeForm {
+      margin-bottom: 20px;
+    }
+
+    #resultContainer {
+      margin-top: 20px;
+      border-collapse: collapse;
+    }
+
+    #resultContainer table {
+      width: 100%;
+      border: 1px solid #ddd;
+    }
+
+    #resultContainer th, #resultContainer td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    #resultContainer th {
+      background-color: #f2f2f2;
+    }
+
+    #resultContainer tr:hover {
+      background-color: #f5f5f5;
+    }
+
+    #resultContainer p {
+      text-align: center;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <h1>Tarih Aralığına Göre Günlük Ciro</h1>
+  <form id="dateRangeForm">
+    <label for="startDate">Başlangıç Tarihi:</label>
+    <input type="date" id="startDate" name="startDate" required>
+
+    <label for="endDate">Bitiş Tarihi:</label>
+    <input type="date" id="endDate" name="endDate" required>
+
+    <button type="submit">Sorgula</button>
+  </form>
+
+  <div id="resultContainer">
+    <!-- Burada sonuçlar gösterilecek -->
+  </div>
+
+  <script>
+    document.getElementById('dateRangeForm').addEventListener('submit', async (event) => {
+      event.preventDefault();
+
+      const startDate = document.getElementById('startDate').value;
+      const endDate = document.getElementById('endDate').value;
+
+      try {
+        const response = await fetch(`/iki-tarih-ciro?tarih1=${startDate}&tarih2=${endDate}`);
+
+        if (!response.ok) {
+          throw new Error('Sorgu başarısız.');
+        }
+
+        const data = await response.json();
+        displayResults(data);
+      } catch (error) {
+        console.error('Bir hata oluştu:', error);
+      }
+    });
+
+    function displayResults(results) {
+      const resultContainer = document.getElementById('resultContainer');
+      resultContainer.innerHTML = '';
+
+      if (results && results.length > 0) {
+        const table = document.createElement('table');
+        const headerRow = table.createTHead().insertRow();
+        const headers = ['Tarih', 'Paket Ciro', 'Restoran Ciro'];
+
+        headers.forEach(headerText => {
+          const th = document.createElement('th');
+          th.textContent = headerText;
+          headerRow.appendChild(th);
+        });
+
+        const tbody = table.createTBody();
+        results.forEach(result => {
+          const row = tbody.insertRow();
+          const dateCell = row.insertCell();
+          dateCell.textContent = result.tarih;
+
+          const paketCell = row.insertCell();
+          paketCell.textContent = result.paket;
+
+          const restoranCell = row.insertCell();
+          restoranCell.textContent = result.restoran;
+        });
+
+        resultContainer.appendChild(table);
+      } else {
+        const noResults = document.createElement('p');
+        noResults.textContent = 'Sonuç bulunamadı.';
+        resultContainer.appendChild(noResults);
+      }
+    }
+  </script>
+</body>
+</html>
